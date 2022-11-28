@@ -2,7 +2,7 @@
 Repo for dev on Corner shop ML (propensity to pay) pipeline
 
 ## Pipeline
-<img width="491" alt="image" src="https://user-images.githubusercontent.com/50050912/204276353-54588782-0473-4cdd-bf1c-73d9e0eb09fc.png">
+<img width="509" alt="image" src="https://user-images.githubusercontent.com/50050912/204278202-de4331ef-fdb6-44a6-932e-16c7cd98ab12.png">
 
 ## Set-up
 ```
