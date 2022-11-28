@@ -14,7 +14,7 @@ class ImbalanceCorrect:
         :param dataset:
             path to the training dataset so it can be balanced.
         """
-        self.dataset = pd.read_csv(dataset).set_index('session_id')
+        self.dataset = pd.read_csv(dataset, index_col=['session_id'])
         self.y = self.dataset.completed_transaction
         self.X = self.dataset.drop(labels=['completed_transaction'], axis=1)
 
