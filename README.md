@@ -7,4 +7,5 @@ Repo for dev on Corner shop ML (propensity to pay) pipeline
 
 ## Run
 cd ../corner-shop-ml
+
 python main.py
