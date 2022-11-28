@@ -9,6 +9,7 @@ dependencies:
   - pip=21.2.4
   - pip:
     - seaborn==0.12.1
+    - imblearn==0.0
     - python-decouple==3.6
     - SQLAlchemy==1.4.44
     - ipykernel==6.16.2
