@@ -48,3 +48,17 @@ class LogisticCLF:
         return {"Precision: {:.4f}".format(precision),
                 "Recall: {:.4f}".format(recall),
                 "f1-score: {:.4f}".format(f1)}
+
+    def predict(self, probability=True):
+        """
+        Make inference with the model
+        :param probability: boolean
+            whether to generate a probabilitic or deterministic output.
+        :return: a value for prediction
+        """
+        if probability:
+            pred_y = self.clf.predict_proba(self.X)
+        else:
+            pred_y = self.clf.predict(self.X)
+
+        return pred_y
