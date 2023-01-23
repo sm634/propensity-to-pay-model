@@ -1,9 +1,11 @@
 name: 'Setup Terraform'
 
+# Jobs will be triggered with the following pushes/pull_requests on these branches and on these paths
 on:
   push:
     branches:
     - main
+    - branch_terraform
     paths:
       - "apps/platform/**"
       - ".github/workflows/**"
@@ -45,7 +47,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       working-directory: apps/platform
-      run: terraform plan
+      run: terraform plan -var-file=”terraform.tfvars”
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.RUN_SA_KEY }}
 
