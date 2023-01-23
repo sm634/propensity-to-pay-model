@@ -1,22 +1,23 @@
-resource "google_project_service" "notebooks" {
-  provider           = google
-  service            = "notebooks.googleapis.com"
-  disable_on_destroy = false
-}
+# ml_model_cloud_run: Name of the resource in Terraform
+# ml-model-cloud-run: Stored with this name in Container Registry
+# google_cloud_run_service: type of the resource
 
-resource "google_notebooks_instance" "basic_instance" {
-  project      = var.project_id
-  name         = "notebooks-instance-basic"
-  provider     = google
-  location     = "europe-west2-a"
-  machine_type = "e2-medium"
+resource "google_cloud_run_service" "cloud_run_ml" {
+  name     = "cloud-run-ml"
+  project  = var.project_id
+  location = var.region
 
-  vm_image {
-    project      = "deeplearning-platform-release"
-    image_family = "tf-ent-2-9-cu113-notebooks"
+  template {
+    spec {
+      containers {
+        image = var.image_uri
+      }
+    service_account_name = var.service_account_name
+    }
   }
 
-  depends_on = [
-    google_project_service.notebooks
-  ]
+  # traffic {
+  #   percent         = 100
+  #   latest_revision = true
+  # }
 }

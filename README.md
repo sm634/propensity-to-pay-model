@@ -21,4 +21,13 @@ python main.py --help
 
 # To train the model using data from BigQuery 
 python main.py --bigqueryData True
+
+# To run ML code in local (Google Service Account authentication is required)
+python main.py --run_local True --bigqueryData True
+```
+
+## Execution through Docker in local
+```
+docker build -t my-image .
+docker run my-image
 ```

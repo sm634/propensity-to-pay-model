@@ -6,6 +6,9 @@ variable "region" {
   type        = string
   description = "This is the GCP region to deploy into"
 }
-variable "project_number" {
-  description = "GCP project number"
+variable "service_account_name" {
+  description = "GCP service account"
+}
+variable "image_uri" {
+  description = "Image location in the Container Registry"
 }

@@ -1,18 +1,16 @@
 import pandas as pd
 from google.cloud import bigquery
 
-
 class CornerShopData:
     """
     A Corner Shop data class. The class is intended to:
-    (i) bring in corner shop data querying using BigQuery-Python interface (**SQLAlchemy)
+    (i) bring in corner shop data querying using BigQuery if required.
     (ii) combine the dataset together to a single view for feature engineering.
     """
 
     def __init__(self):
         self.query_data = False
         self.project_id = "bold-mantis-312313"
-
         self.bq_app_table = self.project_id + '.curated_data_cornershop.app_usage_table_v2'
         self.bq_beacon_table = self.project_id + '.curated_data_cornershop.beacon_data_table'
         self.bq_product_table = self.project_id + '.curated_data_cornershop.product_order_table'

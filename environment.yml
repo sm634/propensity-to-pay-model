@@ -1,11 +1,5 @@
 name: corner_shop_ml_env
 dependencies:
-  - python=3.7
-  - numpy=1.21.5
-  - pandas=1.3.4
-  - scipy=1.7.3
-  - scikit-learn=1.0.2
-  - urllib3=1.26.9
   - pip=21.2.4
   - pip:
     - seaborn==0.12.1
@@ -18,3 +12,5 @@ dependencies:
     - google-cloud-bigquery==3.4.1
     - imbalanced-learn==0.6.0
     - db-dtypes==1.0.5
+    - Flask==2.1.0
+    - gunicorn==20.1.0
