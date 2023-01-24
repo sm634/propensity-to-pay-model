@@ -1,3 +1,9 @@
+resource "google_project_service" "notebooks" {
+  provider           = google
+  service            = "notebooks.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_notebooks_instance" "instance" {
   name = "test1-propensity-model-train-tf"
   location = "europe-west2-a"
