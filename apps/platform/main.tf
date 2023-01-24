@@ -4,6 +4,6 @@ resource "google_notebooks_instance" "instance" {
   machine_type = "n1-standard-4"
   vm_image {
     project      =  var.project_id
-    image_family = "common-cpu-notebooks-debian-10"
+    image_family = "tf-ent-2-9-cu113-notebooks"
   }
 }
