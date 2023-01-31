@@ -23,7 +23,9 @@ class CosWeekDay:
 
         features = self.data[self.dependents['columns']].copy(deep=True)
         del self.data
+
         features = features.replace({np.nan: 0})
+
         # Encoding week days numerically
         event_wday_recode = {'Monday': 1, 'Tuesday': 2, 'Wednesday': 3, 'Thursday': 4, 'Friday': 5, 'Saturday': 6,
                              'Sunday': 7}
