@@ -39,8 +39,8 @@ class CornerShopData:
         # Standardising data type for primary key.
         app_usage['session_id'] = app_usage['session_id'].astype(str)
 
-        # get unique session_ids.
-        app_usage = app_usage.sort_values(by=['user_customer_id', 'completed_transaction'],
+        # Get unique session_ids by sorting records based on session timestamp, event date and user customer id.
+        app_usage = app_usage.sort_values(by=['session_timestamp', 'event_date', 'user_customer_id'],
                                           ascending=False, na_position='last'
                                           ).drop_duplicates(subset=['session_id'])
         return app_usage
@@ -65,8 +65,10 @@ class CornerShopData:
         beacon_features_cols = ['entered_welcome', 'visited_purposeful_shelves', 'user_id', 'entered_dm',
                                 'entered_store', 'visited_personalised_store', 'event_date', 'visited_digi_me',
                                 'entered_purposeful_shelves']
+
         beacon = beacon[beacon_features_cols].copy(deep=True)
-        beacon = beacon.sort_values(by=['user_id', 'event_date'],
+        # Get unique session_ids by sorting records based on session timestamp, event_date and user_id.
+        beacon = beacon.sort_values(by=['session_timestamp', 'event_date', 'user_id'],
                                     ascending=False,
                                     na_position='last').drop_duplicates(subset=['user_id'])
         return beacon
@@ -90,9 +92,11 @@ class CornerShopData:
 
         # standardising session id data type
         product['session_id'] = product['session_id'].astype(str)
-        # product columns to use as features.
+        # sort records to get the latest by event_date.
+        product = product.sort_values(by=['event_date'], ascending=False, na_position='last')
+        # product columns to use as features. Certain fields such as item_name, item_id and order_id are dropped.
         product_features_cols = ['session_id', 'price', 'quantity', 'total_cost']
-
+        # get unique sessions for product features based at the session_id level.
         product = product[product_features_cols].groupby(by=['session_id']).sum()
         return product
 
