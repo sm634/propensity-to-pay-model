@@ -6,7 +6,6 @@ import pandas as pd
 import argparse
 from joblib import dump
 
-
 # parsing arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("--bigqueryData", help="True - data import from bigquery. False - data import from csv files",
@@ -43,7 +42,7 @@ if resample == 'true':
 
         model_name = 'logisticCLF'
 
-        ######## These will need to be moved to a separate function.
+        # These will need to be moved to a separate function.
         # train scores
         train_scores = logit_model.evaluate()
         print("Train scores: \n", train_scores)
@@ -56,7 +55,7 @@ if resample == 'true':
         logit_model.y = test_y
         test_scores = logit_model.evaluate()
         print("Test scores: \n", test_scores)
-
+        feature_importance = logit_model.feature_importance()
         dump(logit_model, f'modelling_layer/models/{model_name}.joblib')
 
 else:
@@ -66,7 +65,7 @@ else:
 
         model_name = 'logisticCLF'
 
-        ######## These will need to be moved to a separate function.
+        # These will need to be moved to a separate function.
         # train scores
         train_scores = logit_model.evaluate()
         print("Train scores: \n", train_scores)
@@ -78,6 +77,7 @@ else:
         logit_model.X = test_X
         logit_model.y = test_y
         test_scores = logit_model.evaluate()
+        feature_importance = logit_model.feature_importance()
         print("Test scores: \n", test_scores)
 
         # save model parameters for inference.

@@ -68,9 +68,14 @@ class CornerShopData:
 
         beacon = beacon[beacon_features_cols].copy(deep=True)
         # Get unique session_ids by sorting records based on session timestamp, event_date and user_id.
-        beacon = beacon.sort_values(by=['session_timestamp', 'event_date', 'user_id'],
-                                    ascending=False,
-                                    na_position='last').drop_duplicates(subset=['user_id'])
+        try:
+            beacon = beacon.sort_values(by=['session_timestamp', 'event_date', 'user_id'],
+                                        ascending=False,
+                                        na_position='last').drop_duplicates(subset=['user_id'])
+        except KeyError:
+            beacon = beacon.sort_values(by=['event_date', 'user_id'],
+                                        ascending=False,
+                                        na_position='last').drop_duplicates(subset=['user_id'])
         return beacon
 
     def _get_product(self, path="preprocessing_layer/data_temp/product_order.csv"):

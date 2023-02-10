@@ -49,6 +49,18 @@ class LogisticCLF:
                 "Recall: {:.4f}".format(recall),
                 "f1-score: {:.4f}".format(f1)}
 
+    def feature_importance(self):
+        importance = self.clf.coef_[0]
+        # summarize feature importance
+        feature_names = self.X.columns
+        feature_importance = {}
+        for key in feature_names:
+            for value in importance:
+                feature_importance[key] = value
+        feature_importance = sorted(feature_importance.items(), key=lambda x: x[1], reverse=True)
+        print(feature_importance)
+        return feature_importance
+
     def predict(self, probability=True):
         """
         Make inference with the model
